@@ -56,7 +56,7 @@ app.post('/data', function(request, response) {
    if (obj.hasOwnProperty('increment'))
    {
       //var change = parseFloat(obj.increment);
-      response.send(JSON.stringify({parseFloat(obj.increment): 1});
+      response.send(JSON.stringify({parseFloat(obj.increment): 5});
       console.log("here is change" + change);
    }
 
