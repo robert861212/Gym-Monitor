@@ -48,6 +48,20 @@ app.get('/style.css', function(request, response) {
    	response.sendFile("style.css", {root:__dirname});
 });
 
+// app.post('/data', function(request, response) {
+//    response.header("Access-Control-Allow-Origin", "*");
+//    response.header("Access-Control-Allow-Headers", "X-Requested-With");
+//    response.setHeader('Content-Type', 'application/json');
+//    var obj = request.body;
+//    if (obj.hasOwnProperty('increment'))
+//    {
+//       //var change = parseFloat(obj.increment);
+//       response.send(JSON.stringify({parseFloat(obj.increment): 5});
+//       console.log("here is change" + change);
+//    }
+// });
+
+
 app.post('/data', function(request, response) {
    response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -55,11 +69,17 @@ app.post('/data', function(request, response) {
    var obj = request.body;
    if (obj.hasOwnProperty('increment'))
    {
-      //var change = parseFloat(obj.increment);
-      response.send(JSON.stringify({parseFloat(obj.increment): 5});
-      console.log("here is change" + change);
+      var change = parseFloat(obj.increment);
+      var toInsert = 
+         {
+            "increment": 1,
+            "created_at": new Date()
+         };
+      db.collection('vehicles', function(error, coll) {
+         coll.insert(toInsert, function(error, saved) {
+         });
+      });
    }
-
 });
 
 
