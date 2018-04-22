@@ -77,7 +77,7 @@ app.post('/data', function(request, response) {
          };
       db.collection('increments', function(error, coll) {
          coll.insert(toInsert, function(error, saved) {
-            response.send(JSON.stringify({parseFloat(obj.increment): 5});
+            //response.send(JSON.stringify({parseFloat(obj.increment): 5});
          });
       });
    }
