@@ -48,6 +48,13 @@ app.get('/style.css', function(request, response) {
    	response.sendFile("style.css", {root:__dirname});
 });
 
+app.get('/hover.css', function(request, response) {
+   response.header("Access-Control-Allow-Origin", "*");
+      response.header("Access-Control-Allow-Headers", "X-Requested-With");
+      response.set('Content-Type', 'text/css');
+      response.sendFile("hover.css", {root:__dirname});
+});
+
 // app.post('/data', function(request, response) {
 //    response.header("Access-Control-Allow-Origin", "*");
 //    response.header("Access-Control-Allow-Headers", "X-Requested-With");
