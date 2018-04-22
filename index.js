@@ -25,6 +25,15 @@ app.get('/', function(request, response) {
    	
 });
 
+app.get('/script.js', function(request, response) {
+	response.header("Access-Control-Allow-Origin", "*");
+   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   	response.set('Content-Type', 'text/js');
+   	response.sendFile("script.js", {root:__dirname});
+   	
+});
+
+
 app.get('/style.css', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
