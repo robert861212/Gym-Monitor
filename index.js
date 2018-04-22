@@ -34,12 +34,18 @@ app.get('/script.js', function(request, response) {
 });
 
 
-app.get('assets/hover.css', function(request, response) {
+app.get('hover.css', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
    	response.set('Content-Type', 'text/css');
-   	response.sendFile("assets/hover.css", {root:__dirname});
-   	
+   	response.sendFile("hover.css", {root:__dirname});
+});
+
+app.get('logo.png', function(request, response) {
+	response.header("Access-Control-Allow-Origin", "*");
+   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   	response.set('Content-Type', 'text/png');
+   	response.sendFile("logo.png", {root:__dirname});
 });
 
 app.get('/style.css', function(request, response) {
