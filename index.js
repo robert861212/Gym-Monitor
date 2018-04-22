@@ -44,7 +44,7 @@ app.get('hover.css', function(request, response) {
 app.get('logo.png', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
-   	response.set('Content-Type', 'text/png');
+   	response.set('Content-Type', 'image/png');
    	response.sendFile("logo.png", {root:__dirname});
 });
 
