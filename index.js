@@ -10,11 +10,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // Required if we need to us
 var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nodemongoexample';
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
-	db = databaseConnection;
+	 db = databaseConnection;
 });
 
-//app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname ));
+app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname ));
 app.get('/', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -75,7 +75,7 @@ app.post('/data', function(request, response) {
             "increment": 1,
             "created_at": new Date()
          };
-      db.collection('vehicles', function(error, coll) {
+      db.collection('increments', function(error, coll) {
          coll.insert(toInsert, function(error, saved) {
          });
       });
