@@ -13,32 +13,25 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 	db = databaseConnection;
 });
 
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
+app.get('/', function(request, response) {
+	response.header("Access-Control-Allow-Origin", "*");
+   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
+    response.set('Content-Type', 'text/html');
+   	response.sendFile("index.html", {root:__dirname});
+   	//response.set('Content-Type', 'text/css');
+   	//response.sendFile("style.css", {root:__dirname});
+   	
+});
 
-app.use(express.static('files'));
-
-// app.get('/', function(request, response) {
-// 	response.header("Access-Control-Allow-Origin", "*");
-//    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
-//    	// response.set('Content-Type', 'text/html');
-//    	// response.sendFile("index.html", {root:__dirname});
-//    	//response.set('Content-Type', 'text/css');
-//    	//response.sendFile("style.css", {root:__dirname});
-//    	var host = server.address().address
-//     var port = server.address().port
-// });
-
-app.use(express.static('files'));
-
-var server = app.listen(process.env.PORT || 3000, function () {
-
-    var host = server.address().address
-    var port = server.address().port
-
-    console.log('Express app listening at http://%s:%s', host, port)
-
-})
+app.get('/style.css', function(request, response) {
+	response.header("Access-Control-Allow-Origin", "*");
+   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   	response.set('Content-Type', 'text/css');
+   	response.sendFile("style.css", {root:__dirname});
+   	
+});
 
 
 app.listen(process.env.PORT || 3000);
