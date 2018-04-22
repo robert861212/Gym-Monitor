@@ -33,7 +33,6 @@ app.get('/script.js', function(request, response) {
    	
 });
 
-/assets/hover.css
 
 app.get('assets/hover.css', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
