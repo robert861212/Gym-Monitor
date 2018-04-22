@@ -79,7 +79,7 @@ app.post('/data', function(request, response) {
       var change = parseFloat(obj.increment);
       var toInsert = 
          {
-            "increment": 1,
+            "increment": change,
             "created_at": new Date()
          };
       db.collection('increments', function(error, coll) {
