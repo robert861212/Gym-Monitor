@@ -34,20 +34,47 @@ app.get('/script.js', function(request, response) {
 });
 
 
-app.get('/logo.png', function(request, response) {
-	response.header("Access-Control-Allow-Origin", "*");
-   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
-   	response.set('Content-Type', 'text/png');
-   	response.sendFile("logo.png", {root:__dirname});
-});
+// app.get('/logo.png', function(request, response) {
+// 	response.header("Access-Control-Allow-Origin", "*");
+//    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
+//    	response.set('Content-Type', 'text/png');
+//    	response.sendFile("logo.png", {root:__dirname});
+// });
 
 app.get('/style.css', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    	response.header("Access-Control-Allow-Headers", "X-Requested-With");
    	response.set('Content-Type', 'text/css');
    	response.sendFile("style.css", {root:__dirname});
-   	
 });
+
+app.post('/data', function(request, response) {
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   response.setHeader('Content-Type', 'application/json');
+   var obj = request.body;
+   if (obj.hasOwnProperty('increment'))
+   {
+      var change = parseFloat(obj.increment);
+      console.log("here is change" + change);
+   }
+
+});
+
+
+// db.collection('day', function(er, collection) {
+//       collection.find({}).toArray(function(err, results) {
+//          var sendback = {};
+//          var key = 'passengers';
+//          var indexPage = '';
+//          for (var i = results.length - 1; i >= 0; i--)
+//          {
+//             indexPage += results[i].username + " requested a vehicle at " +
+//             results[i].lat + ", " + results[i].lng + " on " + results[i].created_at + " .<br>";
+//          }
+//          response.send(indexPage);
+//       });   
+//    });
 
 
 app.listen(process.env.PORT || 3000);
