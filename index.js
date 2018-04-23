@@ -21,14 +21,13 @@ app.get('/', function(request, response) {
    response.set('Content-Type', 'text/html');
    db.collection('increments', function(er, collection) {
       collection.find({}).toArray(function(err, results) {
-         response.send("hi");
          var count = 0;
          for (var i = 0; i < results.length; i++)
          {
             count += parseFloat(results[i].increment);
          }
 
-         console.log(count);
+         response.send(count);
          // fs.readFile("index.html", 'utf8', function (err,data) {
          //   if (err) {
          //     return console.log(err);
