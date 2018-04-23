@@ -14,7 +14,10 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 });
 
 app.use(express.static(__dirname + '/public'));
-//app.use(express.static(__dirname ));
+
+//var html1 = ""
+//var html1 = 
+//var html1 = 
 app.get('/', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -32,13 +35,13 @@ app.get('/', function(request, response) {
          //   if (err) {
          //     return console.log(err);
          //   }
-         var result = data.replace("<p>There are approximately people at the gym.</p>", count.toString());
-         //response.send(result);
-         fs.writeFile("index.html", result, 'utf8', function (err) {
-               if (err) 
-                  return console.log(err);
-            response.sendFile("index.html", {root:__dirname});
-         });
+         var result = data.replace("toBeReplaced", count.toString());
+         response.send(result);
+         // fs.writeFile("index.html", result, 'utf8', function (err) {
+         //       if (err) 
+         //          return console.log(err);
+         //    response.sendFile("index.html", {root:__dirname});
+         // });
          });
       });
    });
