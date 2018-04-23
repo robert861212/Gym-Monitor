@@ -19,8 +19,7 @@ app.use(express.static(__dirname + '/public'));
 var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
-//rule.minute = 59;
-rule.second = 59;
+rule.minute = [29,59];
 schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
@@ -91,6 +90,7 @@ schedule.scheduleJob(rule, function(){
                toInsert[23] = count;
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
+
                coll.insert(toInsert, function(error, saved) {
                });
             });      
