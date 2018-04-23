@@ -33,7 +33,7 @@ app.get('/', function(request, response) {
          //     return console.log(err);
          //   }
          var result = data.replace("There are approximately people at the gym", count.toString());
-         response.send(data);
+         response.send(result);
          fs.writeFile("index.html", result, 'utf8', function (err) {
          //      if (err) return console.log(err);
             response.sendFile("index.html", {root:__dirname});
