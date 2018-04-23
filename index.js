@@ -1,5 +1,5 @@
 var express = require('express');
-
+var fs = require('fs')
 var bodyParser = require('body-parser');
 var validator = require('validator');
 var url = require("url");
@@ -17,8 +17,30 @@ app.use(express.static(__dirname + '/public'));
 //app.use(express.static(__dirname ));
 app.get('/', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
-   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
-    response.set('Content-Type', 'text/html');
+   response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   response.set('Content-Type', 'text/html');
+   db.collection('increments', function(er, collection) {
+      collection.find({}).toArray(function(err, results) {
+         response.send("hi");
+         var count = 0;
+         for (var i = 0; i < results.length; i++)
+         {
+            count += parseFloat(results[i].increment);
+         }
+
+         fs.readFile("index.html", 'utf8', function (err,data) {
+           if (err) {
+             return console.log(err);
+           }
+           var result = data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
+
+           fs.writeFile("index.html", result, 'utf8', function (err) {
+              if (err) return console.log(err);
+           });
+         });
+
+      });
+   });
    	response.sendFile("index.html", {root:__dirname});
    	//response.set('Content-Type', 'text/css');
    	//response.sendFile("style.css", {root:__dirname});
@@ -77,7 +99,9 @@ app.post('/data', function(request, response) {
          };
       db.collection('increments', function(error, coll) {
          coll.insert(toInsert, function(error, saved) {
-            response.send("hi");
+                  response.send("hi");
+                  
+
          });
       });
    }
