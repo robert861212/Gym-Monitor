@@ -65,30 +65,58 @@ app.get('/test', function(request, response) {
                count += parseFloat(results[i].increment);
             }
 
-            
-            // if (hour = 0)
-            // {
-            //    var toInsert = 
-            //    {
-            //       0: count.toString()
-            //    };
-            // } else if (hour = 1)
-            // {
-            //    var toInsert = 
-            //    {
-            //       1: count.toString()
-            //    };
-            // } else if (hour = 2)
-            // {
-            //    var toInsert = 
-            //    {
-            //       2: count.toString()
-            //    };
-            // } else 
-
+         
             var toInsert = {};
             var key = hour.toString();
-            toInsert[key] = count;
+
+            if (hour == 0)
+               toInsert[0] = count;
+            else if (hour == 1)
+               toInsert[1] = count;
+            else if (hour == 2)
+               toInsert[2] = count;
+            else if (hour == 3)
+               toInsert[3] = count;
+            else if (hour == 4)
+               toInsert[4] = count;
+            else if (hour == 5)
+               toInsert[5] = count;
+            else if (hour == 6)
+               toInsert[6] = count;
+            else if (hour == 7)
+               toInsert[7] = count;
+            else if (hour == 8)
+               toInsert[8] = count;
+            else if (hour == 9)
+               toInsert[9] = count;
+            else if (hour == 10)
+               toInsert[10] = count;
+            else if (hour == 11)
+               toInsert[11] = count;
+            else if (hour == 12)
+               toInsert[12] = count;
+            else if (hour == 13)
+               toInsert[13] = count;
+            else if (hour == 14)
+               toInsert[14] = count;
+            else if (hour == 15)
+               toInsert[15] = count;
+            else if (hour == 16)
+               toInsert[16] = count;
+            else if (hour == 17)
+               toInsert[17] = count;
+            else if (hour == 18)
+               toInsert[18] = count;
+            else if (hour == 19)
+               toInsert[19] = count;
+            else if (hour == 20)
+               toInsert[20] = count;
+            else if (hour == 21)
+               toInsert[21] = count;
+            else if (hour == 22)
+               toInsert[22] = count;
+            else if (hour == 23)
+               toInsert[23] = count;
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
                coll.insert(toInsert, function(error, saved) {
