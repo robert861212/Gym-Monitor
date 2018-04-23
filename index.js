@@ -65,9 +65,7 @@ app.get('/test', function(request, response) {
                count += parseFloat(results[i].increment);
             }
 
-            //if (hour == 0)
-            var toInsert = [];
-            toInsert[hour.toString()] = count.toString();  
+            var toInsert = "{" + hour.toString() + ":" + count.toString() + "}";
             JSON.stringify(toInsert);
             // var toInsert = 
             // {
