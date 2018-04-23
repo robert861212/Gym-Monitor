@@ -33,9 +33,10 @@ app.get('/', function(request, response) {
          //     return console.log(err);
          //   }
          var result = data.replace("<p>There are approximately people at the gym.</p>", count.toString());
-         response.send(result);
+         //response.send(result);
          fs.writeFile("index.html", result, 'utf8', function (err) {
-         //      if (err) return console.log(err);
+               if (err) 
+                  return console.log(err);
             response.sendFile("index.html", {root:__dirname});
          });
          });
