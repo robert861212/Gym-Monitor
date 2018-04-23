@@ -64,10 +64,10 @@ app.get('/test', function(request, response) {
             {
                count += parseFloat(results[i].increment);
             }
-
+            var key = hour.toString();
             var toInsert = 
             {
-               hour.toString(): count.toString()
+               key: count.toString()
             };
             db.collection('hours', function(error, coll) {
                coll.insert(toInsert, function(error, saved) {
