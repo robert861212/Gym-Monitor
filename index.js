@@ -65,7 +65,7 @@ app.get('/test', function(request, response) {
                count += parseFloat(results[i].increment);
             }
             var key = hour.toString();
-            response.send("key")
+            response.send(key)
             var toInsert = 
             {
                key: count.toString()
