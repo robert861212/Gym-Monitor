@@ -32,11 +32,12 @@ app.get('/', function(request, response) {
          //   if (err) {
          //     return console.log(err);
          //   }
-         var result = data;//data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
+         var result = data.replace("There are approximately people at the gym", count.toString());
          response.send(data);
-         //   fs.writeFile("index.html", result, 'utf8', function (err) {
+         fs.writeFile("index.html", result, 'utf8', function (err) {
          //      if (err) return console.log(err);
-         //   });
+            response.sendFile("index.html", {root:__dirname});
+         });
          });
       });
    });
