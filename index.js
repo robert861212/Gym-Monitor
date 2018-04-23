@@ -28,17 +28,18 @@ app.get('/', function(request, response) {
          }
 
          response.send("count" + count);
-         // fs.readFile("index.html", 'utf8', function (err,data) {
+         /fs.readFile("index.html", 'utf8', function (err,data) {
          //   if (err) {
          //     return console.log(err);
          //   }
-         //   var result = data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
+         var result = data;//data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
 
          //   fs.writeFile("index.html", result, 'utf8', function (err) {
          //      if (err) return console.log(err);
          //   });
-         // });
+         });
 
+         response.send(data);
       });
    });
    	//response.sendFile("index.html", {root:__dirname});
