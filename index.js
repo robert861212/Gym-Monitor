@@ -36,7 +36,7 @@ app.get('/', function(request, response) {
          response.send(result);
          fs.writeFile("index.html", result, 'utf8', function (err) {
          //      if (err) return console.log(err);
-            response.sendFile("index.html", {root:__dirname});
+            //response.sendFile("index.html", {root:__dirname});
          });
          });
       });
