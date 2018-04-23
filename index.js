@@ -65,17 +65,33 @@ app.get('/test', function(request, response) {
                count += parseFloat(results[i].increment);
             }
 
-            // var toInsert = "{" + hour.toString() + ":" + count.toString() + "}";
-            // JSON.stringify(toInsert);
+            
+            // if (hour = 0)
+            // {
+            //    var toInsert = 
+            //    {
+            //       0: count.toString()
+            //    };
+            // } else if (hour = 1)
+            // {
+            //    var toInsert = 
+            //    {
+            //       1: count.toString()
+            //    };
+            // } else if (hour = 2)
+            // {
+            //    var toInsert = 
+            //    {
+            //       2: count.toString()
+            //    };
+            // } else 
+
             var toInsert = {};
             var key = hour.toString();
-            toInsert[key] = count.toString();
-            // var toInsert = 
-            // {
-            //    0: count.toString()
-            // };
+            toInsert.key = count;
+            JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-               coll.insert(JSON.stringify(toInsert), function(error, saved) {
+               coll.insert(toInsert, function(error, saved) {
                   response.send("insert");
                });
             });      
