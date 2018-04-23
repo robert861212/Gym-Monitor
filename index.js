@@ -35,7 +35,11 @@ app.get('/', function(request, response) {
          //   if (err) {
          //     return console.log(err);
          //   }
+         // sentence
          var result = data.replace("toBeReplaced", count.toString());
+         //circle
+         result = data.replace("toBeReplaced", count.toString());
+
          response.send(result);
          // fs.writeFile("index.html", result, 'utf8', function (err) {
          //       if (err) 
