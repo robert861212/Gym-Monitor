@@ -3,6 +3,7 @@ var fs = require('fs')
 var bodyParser = require('body-parser');
 var validator = require('validator');
 var url = require("url");
+var schedule = require('node-schedule');
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Required if we need to use HTTP post parameters
@@ -15,9 +16,49 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname + '/public'));
 
-//var html1 = ""
-//var html1 = 
-//var html1 = 
+// hours
+var rule = new schedule.RecurrenceRule();
+rule.minute = 26;
+var j = schedule.scheduleJob(rule, function(){
+   // might need to check if its 7 am and to add the previous hr to current count
+   db.collection('hours', function(er, collection) {
+      previous_hour = (hour - 1).toString();
+      collection.findOne({previous_hour}, function(err, document) {
+         var count = parseFloat(document.previous_hour);
+         var now = new Date;
+         var hour = now.getHours();
+         db.collection('increments', function(er, collection) {
+            collection.find({}).toArray(function(err, results) {
+               for (var i = 0; i < results.length; i++)
+               {
+                  count += parseFloat(results[i].increment);
+               }
+
+               var toInsert = 
+               {
+                  hour.toString(): count.toString(),
+               };
+               db.collection('hours', function(error, coll) {
+                  coll.insert(toInsert, function(error, saved) {
+                  });
+               });      
+            });
+         }); 
+      });        
+   });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -30,24 +71,13 @@ app.get('/', function(request, response) {
             count += parseFloat(results[i].increment);
          }
 
-         //response.send("count" + count);
          fs.readFile("index.html", 'utf8', function (err,data) {
-         //   if (err) {
-         //     return console.log(err);
-         //   }
-
          var result = data.replace("toBeReplaced", count.toString());
          result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
          response.send(result);
-         // fs.writeFile("index.html", result, 'utf8', function (err) {
-         //       if (err) 
-         //          return console.log(err);
-         //    response.sendFile("index.html", {root:__dirname});
-         // });
          });
       });
    });
-   	//response.sendFile("index.html", {root:__dirname});
    	
 });
 
@@ -74,20 +104,6 @@ app.get('/hover.css', function(request, response) {
       response.sendFile("hover.css", {root:__dirname});
 });
 
-// app.post('/data', function(request, response) {
-//    response.header("Access-Control-Allow-Origin", "*");
-//    response.header("Access-Control-Allow-Headers", "X-Requested-With");
-//    response.setHeader('Content-Type', 'application/json');
-//    var obj = request.body;
-//    if (obj.hasOwnProperty('increment'))
-//    {
-//       //var change = parseFloat(obj.increment);
-//       response.send(JSON.stringify({parseFloat(obj.increment): 5});
-//       console.log("here is change" + change);
-//    }
-// });
-
-
 app.post('/data', function(request, response) {
    response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -97,10 +113,10 @@ app.post('/data', function(request, response) {
    {
       var change = parseFloat(obj.increment);
       var toInsert = 
-         {
-            "increment": change,
-            "created_at": new Date()
-         };
+      {
+         "increment": change,
+         "created_at": new Date()
+      };
       db.collection('increments', function(error, coll) {
          coll.insert(toInsert, function(error, saved) {
                   response.send("hi");
@@ -108,21 +124,5 @@ app.post('/data', function(request, response) {
       });
    }
 });
-
-
-// db.collection('day', function(er, collection) {
-//       collection.find({}).toArray(function(err, results) {
-//          var sendback = {};
-//          var key = 'passengers';
-//          var indexPage = '';
-//          for (var i = results.length - 1; i >= 0; i--)
-//          {
-//             indexPage += results[i].username + " requested a vehicle at " +
-//             results[i].lat + ", " + results[i].lng + " on " + results[i].created_at + " .<br>";
-//          }
-//          response.send(indexPage);
-//       });   
-//    });
-
 
 app.listen(process.env.PORT || 3000);
