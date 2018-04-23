@@ -41,9 +41,7 @@ app.get('/', function(request, response) {
 
       });
    });
-   	response.sendFile("index.html", {root:__dirname});
-   	//response.set('Content-Type', 'text/css');
-   	//response.sendFile("style.css", {root:__dirname});
+   	//response.sendFile("index.html", {root:__dirname});
    	
 });
 
