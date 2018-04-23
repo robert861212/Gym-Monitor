@@ -16,35 +16,65 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname + '/public'));
 
-// hours
-var rule = new schedule.RecurrenceRule();
-rule.minute = 27;
-var j = schedule.scheduleJob(rule, function(){
-   // might need to check if its 7 am and to add the previous hr to current count
-   db.collection('hours', function(er, collection) {
-      previous_hour = (hour - 1).toString();
-      collection.findOne({previous_hour}, function(err, document) {
-         var count = parseFloat(document.previous_hour);
-         var now = new Date;
-         var hour = now.getHours();
-         db.collection('increments', function(er, collection) {
-            collection.find({}).toArray(function(err, results) {
-               for (var i = 0; i < results.length; i++)
-               {
-                  count += parseFloat(results[i].increment);
-               }
+// var count = 0;
+// // hours
+// var rule = new schedule.RecurrenceRule();
+// rule.minute = 27;
+// var j = schedule.scheduleJob(rule, function(){
+//    // might need to check if its 7 am and to add the previous hr to current count
+//    db.collection('hours', function(er, collection) {
+//       previous_hour = (hour - 1).toString();
+//       collection.findOne({previous_hour}, function(err, document) {
+//          var count = parseFloat(document.previous_hour);
+//          var now = new Date;
+//          var hour = now.getHours();
+//          db.collection('increments', function(er, collection) {
+//             collection.find({}).toArray(function(err, results) {
+//                for (var i = 0; i < results.length; i++)
+//                {
+//                   count += parseFloat(results[i].increment);
+//                }
 
-               var toInsert = 
-               {
-                  hour.toString(): count.toString(),
-               };
-               db.collection('hours', function(error, coll) {
-                  coll.insert(toInsert, function(error, saved) {
-                  });
-               });      
-            });
-         }); 
-      });        
+//                var toInsert = 
+//                {
+//                   hour.toString(): count.toString(),
+//                };
+//                db.collection('hours', function(error, coll) {
+//                   coll.insert(toInsert, function(error, saved) {
+//                   });
+//                });      
+//             });
+//          }); 
+//       });        
+//    });
+// });
+
+app.get('/test', function(request, response) {
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   response.set('Content-Type', 'text/html');
+   
+   db.collection('hours', function(er, collection) { 
+      var now = new Date;
+      var hour = now.getHours();
+      db.collection('increments', function(er, collection) {
+         collection.find({}).toArray(function(err, results) {
+            var count = 0;
+            for (var i = 0; i < results.length; i++)
+            {
+               count += parseFloat(results[i].increment);
+            }
+
+            var toInsert = 
+            {
+               hour.toString(): count.toString(),
+            };
+            db.collection('hours', function(error, coll) {
+               coll.insert(toInsert, function(error, saved) {
+               });
+            });      
+         });
+      });         
    });
 });
 
