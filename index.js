@@ -19,11 +19,16 @@ app.use(express.static(__dirname + '/public'));
 var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
-rule.minute = 38;
+rule.minute = 59;
 var j = schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
       var hour = now.getHours();
+      hour -= 4;
+      if (hour < 0)
+      {
+         hour += 24;
+      }
       db.collection('increments', function(er, collection) {
          collection.find({}).toArray(function(err, results) {
             var count = 0;
