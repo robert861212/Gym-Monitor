@@ -88,7 +88,7 @@ app.get('/test', function(request, response) {
 
             var toInsert = {};
             var key = hour.toString();
-            toInsert.key = count;
+            toInsert[key] = count;
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
                coll.insert(toInsert, function(error, saved) {
