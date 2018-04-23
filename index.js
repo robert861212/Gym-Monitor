@@ -35,9 +35,9 @@ app.get('/', function(request, response) {
          //   if (err) {
          //     return console.log(err);
          //   }
-         
-         var result = data.replace("toBeReplaced", count.toString());
 
+         var result = data.replace("toBeReplaced", count.toString());
+         result = result.replace("drawCircle", "<figcaption>" +  count.toString() + "People</figcaption>");
          response.send(result);
          // fs.writeFile("index.html", result, 'utf8', function (err) {
          //       if (err) 
