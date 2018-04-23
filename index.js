@@ -65,12 +65,12 @@ app.get('/test', function(request, response) {
                count += parseFloat(results[i].increment);
             }
 
-            var toInsert = "{" + hour.toString() + ":" + count.toString() + "}";
-            JSON.stringify(toInsert);
-            // var toInsert = 
-            // {
-            //    0: count.toString()
-            // };
+            // var toInsert = "{" + hour.toString() + ":" + count.toString() + "}";
+            // JSON.stringify(toInsert);
+            var toInsert = 
+            {
+               0: count.toString()
+            };
             db.collection('hours', function(error, coll) {
                coll.insert(toInsert, function(error, saved) {
                   response.send("insert");
