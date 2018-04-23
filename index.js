@@ -55,7 +55,7 @@ app.get('/test', function(request, response) {
    response.set('Content-Type', 'text/html');
    
    db.collection('hours', function(er, collection) { 
-      var now = new Date;
+      var now = new Date();
       var hour = now.getHours();
       db.collection('increments', function(er, collection) {
          collection.find({}).toArray(function(err, results) {
@@ -67,7 +67,7 @@ app.get('/test', function(request, response) {
 
             var toInsert = 
             {
-               hour.toString(): count.toString(),
+               hour.toString(): count.toString()
             };
             db.collection('hours', function(error, coll) {
                coll.insert(toInsert, function(error, saved) {
