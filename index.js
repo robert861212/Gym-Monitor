@@ -28,16 +28,17 @@ app.get('/', function(request, response) {
             count += parseFloat(results[i].increment);
          }
 
-         fs.readFile("index.html", 'utf8', function (err,data) {
-           if (err) {
-             return console.log(err);
-           }
-           var result = data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
+         console.log(count);
+         // fs.readFile("index.html", 'utf8', function (err,data) {
+         //   if (err) {
+         //     return console.log(err);
+         //   }
+         //   var result = data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
 
-           fs.writeFile("index.html", result, 'utf8', function (err) {
-              if (err) return console.log(err);
-           });
-         });
+         //   fs.writeFile("index.html", result, 'utf8', function (err) {
+         //      if (err) return console.log(err);
+         //   });
+         // });
 
       });
    });
