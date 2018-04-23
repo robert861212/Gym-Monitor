@@ -98,8 +98,6 @@ app.post('/data', function(request, response) {
       db.collection('increments', function(error, coll) {
          coll.insert(toInsert, function(error, saved) {
                   response.send("hi");
-                  
-
          });
       });
    }
