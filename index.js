@@ -91,7 +91,6 @@ var j = schedule.scheduleJob(rule, function(){
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
                coll.insert(toInsert, function(error, saved) {
-                  response.send("insert");
                });
             });      
          });
