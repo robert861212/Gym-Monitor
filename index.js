@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'));
 
 // hours
 var rule = new schedule.RecurrenceRule();
-rule.minute = 26;
+rule.minute = 27;
 var j = schedule.scheduleJob(rule, function(){
    // might need to check if its 7 am and to add the previous hr to current count
    db.collection('hours', function(er, collection) {
