@@ -27,19 +27,17 @@ app.get('/', function(request, response) {
             count += parseFloat(results[i].increment);
          }
 
-         response.send("count" + count);
+         //response.send("count" + count);
          fs.readFile("index.html", 'utf8', function (err,data) {
          //   if (err) {
          //     return console.log(err);
          //   }
          var result = data;//data.replace(/<p>There are approximately people at the gym.</p>/g,  count);
-
+         response.send(data);
          //   fs.writeFile("index.html", result, 'utf8', function (err) {
          //      if (err) return console.log(err);
          //   });
          });
-
-         response.send(data);
       });
    });
    	//response.sendFile("index.html", {root:__dirname});
