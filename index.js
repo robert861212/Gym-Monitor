@@ -27,7 +27,7 @@ app.get('/', function(request, response) {
             count += parseFloat(results[i].increment);
          }
 
-         response.send(count);
+         response.send("count" + count);
          // fs.readFile("index.html", 'utf8', function (err,data) {
          //   if (err) {
          //     return console.log(err);
