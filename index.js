@@ -34,6 +34,7 @@ schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
       var hour = now.getHours();
+      var minute = now.getMinutes();
       hour -= 4;
       if (hour < 0)
       {
@@ -54,8 +55,8 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-
-               coll.insert(toInsert, function(error, saved) {
+               if (minute == 59)
+                  coll.insert(toInsert, function(error, saved) {
                });
             });      
          });
