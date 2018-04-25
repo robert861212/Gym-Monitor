@@ -55,7 +55,7 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-               if (minute == 59)
+               if (minute == 59 || minute == 10 || minute == 20)
                   coll.insert(toInsert, function(error, saved) {
                });
             });      
