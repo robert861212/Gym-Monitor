@@ -16,15 +16,6 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname + '/public'));
 
-var keepServerRunning = new schedule.RecurrenceRule();
-keepServerRunning.minute = [0,5,10,15,20,25,30,35,40,45,50,55];
-schedule.scheduleJob(rule, function(){
-   });
-
-
-
-
-
 
 var count = 0;
 // hours
