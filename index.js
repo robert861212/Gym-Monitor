@@ -16,10 +16,20 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname + '/public'));
 
+var keepServerRunning = new schedule.RecurrenceRule();
+keepServerRunning.minute = [0,5,10,15,20,25,30,35,40,45,50,55];
+schedule.scheduleJob(rule, function(){
+   });
+
+
+
+
+
+
 var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
-rule.minute = [29,59];
+rule.minute = [0,5,10,15,20,25,30,35,40,45,50,59];
 schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
@@ -37,57 +47,11 @@ schedule.scheduleJob(rule, function(){
                count += parseFloat(results[i].increment);
             }
          
-            var toInsert = {};
-            var key = hour.toString();
-
-            if (hour == 0)
-               toInsert[0] = count;
-            else if (hour == 1)
-               toInsert[1] = count;
-            else if (hour == 2)
-               toInsert[2] = count;
-            else if (hour == 3)
-               toInsert[3] = count;
-            else if (hour == 4)
-               toInsert[4] = count;
-            else if (hour == 5)
-               toInsert[5] = count;
-            else if (hour == 6)
-               toInsert[6] = count;
-            else if (hour == 7)
-               toInsert[7] = count;
-            else if (hour == 8)
-               toInsert[8] = count;
-            else if (hour == 9)
-               toInsert[9] = count;
-            else if (hour == 10)
-               toInsert[10] = count;
-            else if (hour == 11)
-               toInsert[11] = count;
-            else if (hour == 12)
-               toInsert[12] = count;
-            else if (hour == 13)
-               toInsert[13] = count;
-            else if (hour == 14)
-               toInsert[14] = count;
-            else if (hour == 15)
-               toInsert[15] = count;
-            else if (hour == 16)
-               toInsert[16] = count;
-            else if (hour == 17)
-               toInsert[17] = count;
-            else if (hour == 18)
-               toInsert[18] = count;
-            else if (hour == 19)
-               toInsert[19] = count;
-            else if (hour == 20)
-               toInsert[20] = count;
-            else if (hour == 21)
-               toInsert[21] = count;
-            else if (hour == 22)
-               toInsert[22] = count;
-            else if (hour == 23)
-               toInsert[23] = count;
+            var toInsert = 
+               {
+                  "hour": hour,
+                  "number": count,
+               };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
 
