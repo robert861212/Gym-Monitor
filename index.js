@@ -29,7 +29,7 @@ schedule.scheduleJob(rule, function(){
 var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
-rule.minute = [0,5,10,15,20,25,30,35,40,45,50,55,59];
+rule.minute = [0,5,10,15,20,25,30,35,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,59];
 schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
