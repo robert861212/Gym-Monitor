@@ -55,7 +55,7 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-               if (minute == 59 || minute == 15 || minute == 25)
+               //if (minute == 59)
                   coll.insert(toInsert, function(error, saved) {
                });
             });      
@@ -63,96 +63,6 @@ schedule.scheduleJob(rule, function(){
       });         
    });
 });
-
-// app.get('/test', function(request, response) {
-//    response.header("Access-Control-Allow-Origin", "*");
-//    response.header("Access-Control-Allow-Headers", "X-Requested-With");
-//    response.set('Content-Type', 'text/html');
-   
-//    db.collection('hours', function(er, collection) { 
-//       var now = new Date();
-//       var hour = now.getHours();
-//       db.collection('increments', function(er, collection) {
-//          collection.find({}).toArray(function(err, results) {
-//             var count = 0;
-//             for (var i = 0; i < results.length; i++)
-//             {
-//                count += parseFloat(results[i].increment);
-//             }
-
-         
-//             var toInsert = {};
-//             var key = hour.toString();
-
-//             if (hour == 0)
-//                toInsert[0] = count;
-//             else if (hour == 1)
-//                toInsert[1] = count;
-//             else if (hour == 2)
-//                toInsert[2] = count;
-//             else if (hour == 3)
-//                toInsert[3] = count;
-//             else if (hour == 4)
-//                toInsert[4] = count;
-//             else if (hour == 5)
-//                toInsert[5] = count;
-//             else if (hour == 6)
-//                toInsert[6] = count;
-//             else if (hour == 7)
-//                toInsert[7] = count;
-//             else if (hour == 8)
-//                toInsert[8] = count;
-//             else if (hour == 9)
-//                toInsert[9] = count;
-//             else if (hour == 10)
-//                toInsert[10] = count;
-//             else if (hour == 11)
-//                toInsert[11] = count;
-//             else if (hour == 12)
-//                toInsert[12] = count;
-//             else if (hour == 13)
-//                toInsert[13] = count;
-//             else if (hour == 14)
-//                toInsert[14] = count;
-//             else if (hour == 15)
-//                toInsert[15] = count;
-//             else if (hour == 16)
-//                toInsert[16] = count;
-//             else if (hour == 17)
-//                toInsert[17] = count;
-//             else if (hour == 18)
-//                toInsert[18] = count;
-//             else if (hour == 19)
-//                toInsert[19] = count;
-//             else if (hour == 20)
-//                toInsert[20] = count;
-//             else if (hour == 21)
-//                toInsert[21] = count;
-//             else if (hour == 22)
-//                toInsert[22] = count;
-//             else if (hour == 23)
-//                toInsert[23] = count;
-//             JSON.stringify(toInsert);
-//             db.collection('hours', function(error, coll) {
-//                coll.insert(toInsert, function(error, saved) {
-//                   response.send("insert");
-//                });
-//             });      
-//          });
-//       });         
-//    });
-// });
-
-
-
-
-
-
-
-
-
-
-
 
 app.get('/', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
@@ -178,10 +88,26 @@ app.get('/', function(request, response) {
 
 app.get('/script.js', function(request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
-   	response.header("Access-Control-Allow-Headers", "X-Requested-With");
-   	response.set('Content-Type', 'text/js');
-   	response.sendFile("script.js", {root:__dirname});
-   	
+   response.header("Access-Control-Allow-Headers", "X-Requested-With");
+   response.set('Content-Type', 'text/js');
+
+
+   db.collection('hours', function(er, collection) {
+      collection.find({}).toArray(function(err, results) {
+         var result;
+         for (var i = 0; i < results.length; i++)
+         {
+            currentHour = results[i].hour.toString();
+            hourCount = results[i].number;
+            fs.readFile("script.js", 'utf8', function (err,data) {
+            result = data.replace("toBeReplacedHour" + currentHour, currentHour + "AM, " + hourCount);
+            //result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
+            
+         }
+         response.send(result);
+
+
+   
 });
 
 
