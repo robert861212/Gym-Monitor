@@ -29,7 +29,7 @@ schedule.scheduleJob(rule, function(){
 var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
-rule.minute = 59;
+rule.minute = [0,5,10,15,20,25,30,35,40,45,50,55,59];
 schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
@@ -55,7 +55,7 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-               if (minute == 59 || minute == 10 || minute == 20)
+               if (minute == 59 || minute == 15 || minute == 25)
                   coll.insert(toInsert, function(error, saved) {
                });
             });      
