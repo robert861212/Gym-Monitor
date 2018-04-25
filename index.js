@@ -86,29 +86,29 @@ app.get('/', function(request, response) {
    	
 });
 
-app.get('/script.js', function(request, response) {
-	response.header("Access-Control-Allow-Origin", "*");
-   response.header("Access-Control-Allow-Headers", "X-Requested-With");
-   response.set('Content-Type', 'text/js');
+// app.get('/script.js', function(request, response) {
+// 	response.header("Access-Control-Allow-Origin", "*");
+//    response.header("Access-Control-Allow-Headers", "X-Requested-With");
+//    response.set('Content-Type', 'text/js');
 
 
-   db.collection('hours', function(er, collection) {
-      collection.find({}).toArray(function(err, results) {
-         var result;
-         for (var i = 0; i < results.length; i++)
-         {
-            currentHour = results[i].hour.toString();
-            hourCount = results[i].number;
-            fs.readFile("script.js", 'utf8', function (err,data) {
-            result = data.replace("toBeReplacedHour" + currentHour, currentHour + "AM, " + hourCount);
-            //result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
+//    db.collection('hours', function(er, collection) {
+//       collection.find({}).toArray(function(err, results) {
+//          var result;
+//          for (var i = 0; i < results.length; i++)
+//          {
+//             currentHour = results[i].hour.toString();
+//             hourCount = results[i].number;
+//             fs.readFile("script.js", 'utf8', function (err,data) {
+//             result = data.replace("toBeReplacedHour" + currentHour, currentHour + "AM, " + hourCount);
+//             //result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
             
-         }
-         response.send(result);
+//          }
+//          response.send(result);
 
 
    
-});
+// });
 
 
 app.get('/style.css', function(request, response) {
