@@ -93,7 +93,7 @@ app.get('/script.js', function(request, response) {
             hourCount = results[i].number;
             fs.readFile("script.js", 'utf8', function (err,data) {
             replace = "toBeReplaced" + results[i].hour.toString();
-            result = data.replace("toBeReplaced7AM", currentHour + "AM, " + hourCount);
+            result = data.replace("toBeReplaced7", currentHour + "AM, " + hourCount);
             //result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
             
          }
