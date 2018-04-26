@@ -95,7 +95,7 @@ app.get('/script.js', function(request, response) {
             hourCount = results[i].number;
             fs.readFile("script.js", 'utf8', function (err,data) {
                replaceHour = "number" + currentHour;
-               result = data.replace(replaceHour, hourCount);
+               result = data.replace(replaceHour, 1);
             });
          }
          response.send(result);
