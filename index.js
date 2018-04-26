@@ -92,14 +92,14 @@ app.get('/script.js', function(request, response) {
          for (var i = 0; i < results.length; i++)
          {
             currentHour = results[i].hour.toString();
-            hourCount = results[i].number.toString();
+            hourCount = results[i].number;
             fs.readFile("script.js", 'utf8', function (err,data) {
                replaceHour = "number" + currentHour;
                result = data.replace(replaceHour, hourCount);
-               response.send(result);
             });
          }
          response.send(result);
+         //response.send(result);
       });   
    });
    
