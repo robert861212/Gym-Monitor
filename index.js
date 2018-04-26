@@ -93,12 +93,72 @@ app.get('/script.js', function(request, response) {
 
          fs.readFile("script.js", 'utf8', function (err,data) {
          var sevenCount;
+         var eightCount;
+         var nineCount;
+         var tenCount;
+         var elevenCount;
+         var twelveCount;
+         var thirteenount;
+         var fourteenCount;
+         var fifteenCount;
+         var sixteenCount;
+         var seventeenCount;
+         var eighteenCount;
+         var nineteenCount;
+         var twentyCount;
+         var twentyoneCount;
+         var twentytwoCount;
          for (var i = 0; i < results.length; i++)
          {
             if (results[i].hour == 7)
                sevenCount = results[i].number;
+            else if (results[i].hour == 8)
+               eightCount = results[i].number;
+            else if (results[i].hour == 9)
+               nineCount = results[i].number;
+            else if (results[i].hour == 10)
+               tenCount = results[i].number;
+            else if (results[i].hour == 11)
+               elevenCount = results[i].number;
+            else if (results[i].hour == 12)
+               twelveCount = results[i].number;
+            else if (results[i].hour == 13)
+               thirteenount = results[i].number;
+            else if (results[i].hour == 14)
+               fourteenCount = results[i].number;
+            else if (results[i].hour == 15)
+               fifteenCount = results[i].number;
+            else if (results[i].hour == 16)
+               sixteenCount = results[i].number;
+            else if (results[i].hour == 17)
+               seventeenCount = results[i].number;
+            else if (results[i].hour == 18)
+               eighteenCount = results[i].number;
+            else if (results[i].hour == 19)
+               nineteenCount = results[i].number;
+            else if (results[i].hour == 20)
+               twentyCount = results[i].number;
+            else if (results[i].hour == 21)
+               twentyoneCount = results[i].number;
+            else if (results[i].hour == 22)
+               twentytwoCount = results[i].number;
          }
          result = data.replace("number7", sevenCount);
+         result = data.replace("number8", eightCount);
+         result = data.replace("number9", nineCount);
+         result = data.replace("number10", tenCount);
+         result = data.replace("number11", elevenCount);
+         result = data.replace("number12", twelveCount);
+         result = data.replace("number13", thirteenount);
+         result = data.replace("number14", fourteenCount);
+         result = data.replace("number15", fifteenCount);
+         result = data.replace("number16", sixteenCount);
+         result = data.replace("number17", seventeenCount);
+         result = data.replace("number18", eighteenCount);
+         result = data.replace("number19", nineteenCount);
+         result = data.replace("number20", twentyCount);
+         result = data.replace("number21", twentyoneCount);
+         result = data.replace("number22", twentytwoCount);
          response.send(result);  
          }); 
       });
