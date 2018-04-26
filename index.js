@@ -95,11 +95,11 @@ app.get('/script.js', function(request, response) {
             replace = "toBeReplaced" + results[i].hour.toString();
             result = data.replace("toBeReplaced7", currentHour + "AM, " + hourCount);
             //result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
-            
+            });
          }
          response.send(result);
-
-
+      });   
+   });
    
 });
 
