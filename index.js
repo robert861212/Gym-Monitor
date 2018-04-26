@@ -84,27 +84,24 @@ app.get('/script.js', function(request, response) {
    response.set('Content-Type', 'text/js');
 
    var result;
-   fs.readFile("script.js", 'utf8', function (err,data) {
-      result = data.replace("number7", "1");
-      response.send(result);
-   });
-   // db.collection('hours', function(er, collection) {
-   //    collection.find({}).toArray(function(err, results) {
+   
+   db.collection('hours', function(er, collection) {
+      collection.find({}).toArray(function(err, results) {
 
-   //       // var result;
-   //       // for (var i = 0; i < results.length; i++)
-   //       // {
-   //       //    currentHour = results[i].hour.toString();
-   //       //    hourCount = results[i].number;
-   //       //    fs.readFile("script.js", 'utf8', function (err,data) {
-   //       //       //replace = "toBeReplaced" + results[i].hour.toString();
-   //       //       //result = data.replace("7AM", "7AM");
-   //       //       response.send(data);
-   //       //    });
-   //       // }
-   //       //response.send(result);
-   //    });   
-   // });
+         var result;
+         for (var i = 0; i < results.length; i++)
+         {
+            currentHour = results[i].hour.toString();
+            hourCount = results[i].number.toString();
+            fs.readFile("script.js", 'utf8', function (err,data) {
+               replaceHour = number + currentHour;
+               result = data.replace(replaceHour, hourCount);
+               response.send(result);
+            });
+         }
+         response.send(result);
+      });   
+   });
    
 });
 
