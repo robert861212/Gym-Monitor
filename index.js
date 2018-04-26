@@ -84,22 +84,26 @@ app.get('/script.js', function(request, response) {
    response.set('Content-Type', 'text/js');
 
 
-   db.collection('hours', function(er, collection) {
-      collection.find({}).toArray(function(err, results) {
-         var result;
-         for (var i = 0; i < results.length; i++)
-         {
-            currentHour = results[i].hour.toString();
-            hourCount = results[i].number;
-            fs.readFile("script.js", 'utf8', function (err,data) {
-               //replace = "toBeReplaced" + results[i].hour.toString();
-               //result = data.replace("7AM", "7AM");
-               response.send(data);
-            });
-         }
-         //response.send(result);
-      });   
-   });
+   fs.readFile("script.js", 'utf8', function (err,data) {
+      response.send(data);
+   }
+   // db.collection('hours', function(er, collection) {
+   //    collection.find({}).toArray(function(err, results) {
+
+   //       // var result;
+   //       // for (var i = 0; i < results.length; i++)
+   //       // {
+   //       //    currentHour = results[i].hour.toString();
+   //       //    hourCount = results[i].number;
+   //       //    fs.readFile("script.js", 'utf8', function (err,data) {
+   //       //       //replace = "toBeReplaced" + results[i].hour.toString();
+   //       //       //result = data.replace("7AM", "7AM");
+   //       //       response.send(data);
+   //       //    });
+   //       // }
+   //       //response.send(result);
+   //    });   
+   // });
    
 });
 
