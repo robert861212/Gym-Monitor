@@ -85,7 +85,7 @@ app.get('/script.js', function(request, response) {
 
    var result;
    fs.readFile("script.js", 'utf8', function (err,data) {
-      result = data.replace("7AM", "7AM");
+      result = data.replace("7AM", "6AM");
       response.send(result);
    });
    // db.collection('hours', function(er, collection) {
