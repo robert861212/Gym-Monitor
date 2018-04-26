@@ -75,7 +75,7 @@ function show_people() {
   data = {
     header: ["Name", "People"],
     rows: [
-    ["7AM", 50],
+    ["toBeReplaced7AM", "toBeReplaced7AMC"],
     ["8AM", 50],
     ["9AM", 50],
     ["10AM", 50],
