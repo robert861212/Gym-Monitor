@@ -92,11 +92,12 @@ app.get('/script.js', function(request, response) {
             currentHour = results[i].hour.toString();
             hourCount = results[i].number;
             fs.readFile("script.js", 'utf8', function (err,data) {
-               replace = "toBeReplaced" + results[i].hour.toString();
-               result = data.replace("7AM", "7AM");
+               //replace = "toBeReplaced" + results[i].hour.toString();
+               //result = data.replace("7AM", "7AM");
+               response.send(data);
             });
          }
-         response.send(result);
+         //response.send(result);
       });   
    });
    
