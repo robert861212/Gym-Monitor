@@ -83,9 +83,10 @@ app.get('/script.js', function(request, response) {
    response.header("Access-Control-Allow-Headers", "X-Requested-With");
    response.set('Content-Type', 'text/js');
 
-
+   var result;
    fs.readFile("script.js", 'utf8', function (err,data) {
-      response.send(data);
+      result = data.replace("7AM", "7AM");
+      response.send(result);
    });
    // db.collection('hours', function(er, collection) {
    //    collection.find({}).toArray(function(err, results) {
