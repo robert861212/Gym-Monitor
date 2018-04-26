@@ -101,7 +101,7 @@ app.get('/script.js', function(request, response) {
 
 
    
-// });
+});
 
 
 app.get('/style.css', function(request, response) {
