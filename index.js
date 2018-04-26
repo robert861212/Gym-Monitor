@@ -84,8 +84,10 @@ app.get('/script.js', function(request, response) {
    response.set('Content-Type', 'text/js');
 
    var result;
+   fs.readFile("script.js", 'utf8', function (err,data) {
    result = data.replace("number7", 1);
    response.send(result);  
+   });
    //db.collection('hours', function(er, collection) {
       // collection.find({}).toArray(function(err, results) {
 
