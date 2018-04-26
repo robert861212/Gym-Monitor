@@ -47,8 +47,12 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-               if (minute == 59)
-                  coll.insert(toInsert, function(error, saved) {
+               db.collection('vehicles', function(error, coll) {  
+                  var previous_entry = { "hour": hour};
+                  coll.remove(previous_entry, function(err, coll){
+                     coll.insert(toInsert, function(error, saved) {
+                  });
+               });
                });
             });      
          });
@@ -162,8 +166,6 @@ app.get('/script.js', function(request, response) {
          response.send(result);  
          }); 
       });
-      // result = data.replace("number7", 1);
-      // response.send(result);  
    });
    
 });
