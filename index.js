@@ -90,23 +90,19 @@ app.get('/script.js', function(request, response) {
    // });
    db.collection('hours', function(er, collection) {
       collection.find({}).toArray(function(err, results) {
-
-      //    for (var i = 0; i < results.length; i++)
-      //    {
-      //       currentHour = results[i].hour.toString();
-      //       hourCount = results[i].number;
-      //       fs.readFile("script.js", 'utf8', function (err,data) {
-      //          //replaceHour = "number" + currentHour;
-      //          result = data.replace("number7", 1);
-      //       });
-      //    }
+         for (var i = 0; i < results.length; i++)
+         {
+            //currentHour = results[i].hour.toString();
+            //hourCount = results[i].number;
+            fs.readFile("script.js", 'utf8', function (err,data) {
+            result = data.replace("number7", 1);
+            //response.send(result);  
+            }); 
+         }
       //    //response.send(result);
 
-
-         fs.readFile("script.js", 'utf8', function (err,data) {
-         result = data.replace("number7", 1);
          response.send(result);  
-         }); 
+      
       });
       // result = data.replace("number7", 1);
       // response.send(result);  
