@@ -90,14 +90,15 @@ app.get('/script.js', function(request, response) {
    // });
    db.collection('hours', function(er, collection) {
       collection.find({}).toArray(function(err, results) {
+         sevenCount;
          for (var i = 0; i < results.length; i++)
          {
-            currentHour = results[i].hour.toString();
-            hourCount = results[i].number;
+            if (results[i].hour == 7)
+               sevenCount = results[i].number;
          }
-         
+
          fs.readFile("script.js", 'utf8', function (err,data) {
-         result = data.replace("number7", 1);
+         result = data.replace("number7", sevenCount);
          response.send(result);  
          }); 
       });
