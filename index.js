@@ -47,10 +47,10 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
-               db.collection('vehicles', function(error, coll) {  
                   var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
-                     coll.insert(toInsert, function(error, saved) {
+                     db.collection('hours', function(error, coll) {
+                        coll.insert(toInsert, function(error, saved) {
                   });
                });
                });
