@@ -21,7 +21,7 @@ var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
 //rule.minute = [0,5,10,15,20,25,30,35,40,45,50,55,59];
-rule.second = [59];
+rule.second = [0,5,10,15,20,25,30,35,40,45,50,55,59];//[59];
 schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
@@ -42,14 +42,14 @@ schedule.scheduleJob(rule, function(){
          
             var toInsert = 
                {
-                  "hour": hour,
+                  "day": hour,
                   "number": count,
                };
             JSON.stringify(toInsert);
-            db.collection('hours', function(error, coll) {
-                  var previous_entry = { "hour": hour};
+            db.collection('day', function(error, coll) {
+                  var previous_entry = { "day": hour};
                   coll.remove(previous_entry, function(err, coll){
-                     db.collection('hours', function(error, coll) {
+                     db.collection('day', function(error, coll) {
                         coll.insert(toInsert, function(error, saved) {
                   });
                });
@@ -94,76 +94,186 @@ app.get('/script.js', function(request, response) {
    // });
    db.collection('hours', function(er, collection) {
       collection.find({}).toArray(function(err, results) {
+         db.collection('days', function(er, collection) {
+            collection.find({}).toArray(function(err, resultsD) {
+               db.collection('months', function(er, collection) {
+                  collection.find({}).toArray(function(err, resultsM) {
+                     fs.readFile("script.js", 'utf8', function (err,data) {
 
-         fs.readFile("script.js", 'utf8', function (err,data) {
-         var sevenCount;
-         var eightCount;
-         var nineCount;
-         var tenCount;
-         var elevenCount;
-         var twelveCount;
-         var thirteenount;
-         var fourteenCount;
-         var fifteenCount;
-         var sixteenCount;
-         var seventeenCount;
-         var eighteenCount;
-         var nineteenCount;
-         var twentyCount;
-         var twentyoneCount;
-         var twentytwoCount;
-         for (var i = 0; i < results.length; i++)
-         {
-            if (results[i].hour == 7)
-               sevenCount = results[i].number;
-            else if (results[i].hour == 8)
-               eightCount = results[i].number;
-            else if (results[i].hour == 9)
-               nineCount = results[i].number;
-            else if (results[i].hour == 10)
-               tenCount = results[i].number;
-            else if (results[i].hour == 11)
-               elevenCount = results[i].number;
-            else if (results[i].hour == 12)
-               twelveCount = results[i].number;
-            else if (results[i].hour == 13)
-               thirteenount = results[i].number;
-            else if (results[i].hour == 14)
-               fourteenCount = results[i].number;
-            else if (results[i].hour == 15)
-               fifteenCount = results[i].number;
-            else if (results[i].hour == 16)
-               sixteenCount = results[i].number;
-            else if (results[i].hour == 17)
-               seventeenCount = results[i].number;
-            else if (results[i].hour == 18)
-               eighteenCount = results[i].number;
-            else if (results[i].hour == 19)
-               nineteenCount = results[i].number;
-            else if (results[i].hour == 20)
-               twentyCount = results[i].number;
-            else if (results[i].hour == 21)
-               twentyoneCount = results[i].number;
-            else if (results[i].hour == 22)
-               twentytwoCount = results[i].number;
-         }
-         result = data.replace("number7", sevenCount);
-         result = result.replace("number8", eightCount);
-         result = result.replace("number9", nineCount);
-         result = result.replace("number10", tenCount);
-         result = result.replace("number11", elevenCount);
-         result = result.replace("number12", twelveCount);
-         result = result.replace("number13", thirteenount);
-         result = result.replace("number14", fourteenCount);
-         result = result.replace("number15", fifteenCount);
-         result = result.replace("number16", sixteenCount);
-         result = result.replace("number17", seventeenCount);
-         result = result.replace("number18", eighteenCount);
-         result = result.replace("number19", nineteenCount);
-         result = result.replace("number20", twentyCount);
-         result = result.replace("number21", twentyoneCount);
-         result = result.replace("number22", twentytwoCount);
-         response.send(result);  
+                     // hr
+                     var sevenCount;
+                     var eightCount;
+                     var nineCount;
+                     var tenCount;
+                     var elevenCount;
+                     var twelveCount;
+                     var thirteenount;
+                     var fourteenCount;
+                     var fifteenCount;
+                     var sixteenCount;
+                     var seventeenCount;
+                     var eighteenCount;
+                     var nineteenCount;
+                     var twentyCount;
+                     var twentyoneCount;
+                     var twentytwoCount;
+
+                     // week
+                     var mon;
+                     var tues;
+                     var wed;
+                     var thur;
+                     var fri;
+                     var sat;
+                     var sevenCount;
+
+                     // months
+                     var jan;
+                     var feb;
+                     var mar;
+                     var apr;
+                     var may;
+                     var jun;
+                     var jul;
+                     var aug;
+                     var sep;
+                     var oct;
+                     var nov;
+                     var dec;
+
+
+                     // year
+
+
+                     for (var i = 0; i < results.length; i++)
+                     {
+                        if (results[i].hour == 7)
+                           sevenCount = results[i].number;
+                        else if (results[i].hour == 8)
+                           eightCount = results[i].number;
+                        else if (results[i].hour == 9)
+                           nineCount = results[i].number;
+                        else if (results[i].hour == 10)
+                           tenCount = results[i].number;
+                        else if (results[i].hour == 11)
+                           elevenCount = results[i].number;
+                        else if (results[i].hour == 12)
+                           twelveCount = results[i].number;
+                        else if (results[i].hour == 13)
+                           thirteenount = results[i].number;
+                        else if (results[i].hour == 14)
+                           fourteenCount = results[i].number;
+                        else if (results[i].hour == 15)
+                           fifteenCount = results[i].number;
+                        else if (results[i].hour == 16)
+                           sixteenCount = results[i].number;
+                        else if (results[i].hour == 17)
+                           seventeenCount = results[i].number;
+                        else if (results[i].hour == 18)
+                           eighteenCount = results[i].number;
+                        else if (results[i].hour == 19)
+                           nineteenCount = results[i].number;
+                        else if (results[i].hour == 20)
+                           twentyCount = results[i].number;
+                        else if (results[i].hour == 21)
+                           twentyoneCount = results[i].number;
+                        else if (results[i].hour == 22)
+                           twentytwoCount = results[i].number;
+                     }
+
+                     // year
+                     for (var i = 0; i < resultsD.length; i++)
+                     {
+                        if (resultsD[i].day == 1)
+                           mon = resultsD[i].number;
+                        else if (resultsD[i].day == 2)
+                           tues = resultsD[i].number;
+                        else if (resultsD[i].day == 3)
+                           wed = resultsD[i].number;
+                        else if (resultsD[i].day == 4)
+                           thur = resultsD[i].number;
+                        else if (resultsD[i].day == 5)
+                           fri = resultsD[i].number;
+                        else if (resultsD[i].day == 6)
+                           sat = resultsD[i].number;
+                        else if (resultsD[i].day == 7)
+                           sun = resultsD[i].number;
+                     }
+
+                     for (var i = 0; i < resultM.length; i++)
+                     {
+                        if (resultsM[i].month == 1)
+                           jan = resultsM[i].number;
+                        else if (resultsM[i].month == 2)
+                           feb = resultsM[i].number;
+                        else if (resultsM[i].month == 3)
+                           mar = resultsM[i].number;
+                        else if (resultsM[i].month == 4)
+                           apr = resultsM[i].number;
+                        else if (resultsM[i].month == 5)
+                           may = resultsM[i].number;
+                        else if (resultsM[i].month == 6)
+                           jun = resultsM[i].number;
+                        else if (resultsM[i].month == 7)
+                           jul = resultsM[i].number;
+                        else if (resultsM[i].month == 8)
+                           aug = resultsM[i].number;
+                        else if (resultsM[i].month == 9)
+                           sep = resultsM[i].number;
+                        else if (resultsM[i].month == 10)
+                           oct = resultsM[i].number;
+                        else if (resultsM[i].month == 11)
+                           nov = resultsM[i].number;
+                        else if (resultsM[i].month == 12)
+                           dec = resultsM[i].number;
+                     }
+
+
+                     result = data.replace("number7", sevenCount);
+                     result = result.replace("number8", eightCount);
+                     result = result.replace("number9", nineCount);
+                     result = result.replace("number10", tenCount);
+                     result = result.replace("number11", elevenCount);
+                     result = result.replace("number12", twelveCount);
+                     result = result.replace("number13", thirteenount);
+                     result = result.replace("number14", fourteenCount);
+                     result = result.replace("number15", fifteenCount);
+                     result = result.replace("number16", sixteenCount);
+                     result = result.replace("number17", seventeenCount);
+                     result = result.replace("number18", eighteenCount);
+                     result = result.replace("number19", nineteenCount);
+                     result = result.replace("number20", twentyCount);
+                     result = result.replace("number21", twentyoneCount);
+                     result = result.replace("number22", twentytwoCount);
+
+                     result = data.replace("week1", mon);
+                     result = data.replace("week2", tues);
+                     result = data.replace("week3", wed);
+                     result = data.replace("week4", thur);
+                     result = data.replace("week5", fri);
+                     result = data.replace("week6", sat);
+                     result = data.replace("week7", sun);
+
+                     result = data.replace("month1", jan);
+                     result = data.replace("month2", feb);
+                     result = data.replace("month3", mar);
+                     result = data.replace("month4", apr);
+                     result = data.replace("month5", may);
+                     result = data.replace("month6", jun);
+                     result = data.replace("month7", jul);
+                     result = data.replace("month8", aug);
+                     result = data.replace("month9", sep);
+                     result = data.replace("month10", oct);
+                     result = data.replace("month11", nov);
+                     result = data.replace("month12", dec);
+
+
+
+                     response.send(result);  
+                     });
+                  });
+               });
+            });
          }); 
       });
    });
