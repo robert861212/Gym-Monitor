@@ -142,7 +142,7 @@ app.get('/script.js', function(request, response) {
                      var dec;
                      // year
 
-
+                     var year;
                      for (var i = 0; i < results.length; i++)
                      {
                         if (results[i].hour == 7)
@@ -200,6 +200,7 @@ app.get('/script.js', function(request, response) {
 
                      for (var i = 0; i < resultsM.length; i++)
                      {
+                        year += resultsM[i].number;
                         if (resultsM[i].month == 1)
                            jan = resultsM[i].number;
                         else if (resultsM[i].month == 2)
@@ -264,6 +265,8 @@ app.get('/script.js', function(request, response) {
                      result = result.replace("month10", oct);
                      result = result.replace("month11", nov);
                      result = result.replace("month12", dec);
+
+                     result = result.replace("year", year);
 
 
 
