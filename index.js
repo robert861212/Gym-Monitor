@@ -66,7 +66,7 @@ schedule.scheduleJob(rule, function(){
                            var previous_entry_day = { "day": day};
                            collD.remove(previous_entry_day);
                               db.collection('days', function(error, collD) {
-                                 collD.insert(toInsertHr, function(error, saved) {
+                                 collD.insert(toInsertDay, function(error, saved) {
 
                               });
                            });    
