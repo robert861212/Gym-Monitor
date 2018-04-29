@@ -28,6 +28,7 @@ schedule.scheduleJob(rule, function(){
       var hour = now.getHours();
       var minute = now.getMinutes();
       var day = now.getDay();
+      var date = now.getDate();
       hour -= 4;
       if (hour < 0)
       {
@@ -66,6 +67,11 @@ schedule.scheduleJob(rule, function(){
                   "number": dayCount,
                };
             }
+
+            var toInsertDate = 
+               {
+                  "number": dayCount
+               };
             JSON.stringify(toInsertHr);
             JSON.stringify(toInsertDay);
             db.collection('hours', function(error, coll) {
@@ -79,6 +85,47 @@ schedule.scheduleJob(rule, function(){
                            collD.remove(previous_entry_day);
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertDay, function(error, saved) {
+
+                                    if (hour = 11)
+                                    {
+                                       db.collection('dates', function(error, collDa) {
+                                          db.collection('dates', function(error, collDa) {
+                                             collDa.insert(toInsertDate, function(error, saved) {
+                                                db.collection('hours', function(error, colltodelete) {
+                                                   colltodelete.remove();
+                                                });
+                                             });
+                                          });    
+                                       });
+                                    }
+
+                                    if (date == 1 && hour == 0)
+                                    {
+                                       db.collection('dates', function(error, collDa) {
+                                          db.collection('dates', function(error, collDa) {
+                                             collectionD.find({}).toArray(function(err, resultsDa) {
+
+                                                var monthCount;
+                                                for (var i = 0; i < resultsDa.length; i++)
+                                                {
+                                                   monthCount += resultsDa[i].number;
+                                                }
+
+                                                var toInsert = 
+                                                {
+                                                   "month": month - 1,
+                                                   "number": monthCount,
+                                                };
+
+                                                db.collection('dates', function(error, colltodelete) {
+                                                   colltodelete.remove();
+                                                });
+
+
+                                             });
+                                          });    
+                                       });               
+                                    }
 
                               });
                            });    
