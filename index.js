@@ -55,7 +55,8 @@ schedule.scheduleJob(rule, function(){
                   "day": day,
                   "number": dayCount,
                };
-            JSON.stringify(toInsert);
+            JSON.stringify(toInsertHr);
+            JSON.stringify(toInsertDay);
             db.collection('hours', function(error, coll) {
                   var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
