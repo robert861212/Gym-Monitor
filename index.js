@@ -29,6 +29,8 @@ schedule.scheduleJob(rule, function(){
       var minute = now.getMinutes();
       var day = now.getDay();
       var date = now.getDate();
+      var month = now.getMonth();
+      var year = now.getYear();
       hour -= 4;
       if (hour < 0)
       {
@@ -89,44 +91,40 @@ schedule.scheduleJob(rule, function(){
                                     if (hour == 11)
                                     {
                                        db.collection('dates', function(error, collDa) {
-                                          db.collection('dates', function(error, collDa) {
-                                             collDa.insert(toInsertDate, function(error, saved) {
-                                                db.collection('hours', function(error, colltodelete) {
-                                                   colltodelete.remove();
-                                                });
+                                          collDa.insert(toInsertDate, function(error, saved) {
+                                             db.collection('hours', function(error, colltodelete) {
+                                                colltodelete.remove();
                                              });
-                                          });    
-                                       });
-                                    }
 
-                                    if (date == 1 && hour == 0)
-                                    {
-                                       db.collection('dates', function(error, collDa) {
-                                          db.collection('dates', function(error, collDa) {
-                                             collectionD.find({}).toArray(function(err, resultsDa) {
+                                             db.collection('increments', function(error, colldelete) {
+                                                colldelete.remove();
+                                             });
 
-                                                var monthCount;
-                                                for (var i = 0; i < resultsDa.length; i++)
+                                          });
+                                       }); 
+                                    
+                                       if (date == 1 && hour == 0)
+                                       {
+                                          db.collection('months', function(er, collection) {
+                                             collection.find({}).toArray(function(err, results) {
+                                                var yearCount = 0;
+                                                for (var i = 0; i < results.length; i++)
                                                 {
-                                                   monthCount += resultsDa[i].number;
+                                                   count += parseFloat(results[i].increment);
                                                 }
-
                                                 var toInsert = 
                                                 {
-                                                   "month": month - 1,
-                                                   "number": monthCount
+                                                   "year": year - 1,
+                                                   "number": yearCount
                                                 };
 
-                                                db.collection('dates', function(error, colltodelete) {
-                                                   colltodelete.remove();
-                                                });
-
-
+                                                   db.collection('months', function(error, colltodelete) {
+                                                      colltodelete.remove();
+                                                   });
                                              });
-                                          });    
-                                       });               
+                                          });
+                                       }           
                                     }
-
                               });
                            });    
                         });
