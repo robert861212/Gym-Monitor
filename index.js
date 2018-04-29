@@ -200,7 +200,7 @@ app.get('/script.js', function(request, response) {
                            sun = resultsD[i].number;
                      }
 
-                     for (var i = 0; i < resultM.length; i++)
+                     for (var i = 0; i < resultsM.length; i++)
                      {
                         if (resultsM[i].month == 1)
                            jan = resultsM[i].number;
