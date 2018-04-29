@@ -86,7 +86,7 @@ schedule.scheduleJob(rule, function(){
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertDay, function(error, saved) {
 
-                                    if (hour = 11)
+                                    if (hour == 11)
                                     {
                                        db.collection('dates', function(error, collDa) {
                                           db.collection('dates', function(error, collDa) {
