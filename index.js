@@ -179,45 +179,45 @@ app.get('/script.js', function(request, response) {
                      fs.readFile("script.js", 'utf8', function (err,data) {
 
                      // hr
-                     var sevenCount;
-                     var eightCount;
-                     var nineCount;
-                     var tenCount;
-                     var elevenCount;
-                     var twelveCount;
-                     var thirteenount;
-                     var fourteenCount;
-                     var fifteenCount;
-                     var sixteenCount;
-                     var seventeenCount;
-                     var eighteenCount;
-                     var nineteenCount;
-                     var twentyCount;
-                     var twentyoneCount;
-                     var twentytwoCount;
+                     var sevenCount = 0;
+                     var eightCount = 0;
+                     var nineCount = 0;
+                     var tenCoun = 0;
+                     var elevenCount = 0;
+                     var twelveCount = 0;
+                     var thirteenount = 0;
+                     var fourteenCount = 0;
+                     var fifteenCount = 0;
+                     var sixteenCount = 0;
+                     var seventeenCount = 0;
+                     var eighteenCount = 0;
+                     var nineteenCount = 0;
+                     var twentyCount = 0;
+                     var twentyoneCount = 0;
+                     var twentytwoCount = 0;
 
                      // week
-                     var mon;
-                     var tues;
-                     var wed;
-                     var thur;
-                     var fri;
-                     var sat;
-                     var sun;
+                     var mon = 0;
+                     var tues = 0;
+                     var wed = 0;
+                     var thur = 0;
+                     var fri = 0;
+                     var sat = 0;
+                     var sun = 0;
 
                      // months
-                     var jan;
-                     var feb;
-                     var mar;
-                     var apr;
-                     var may;
-                     var jun;
-                     var jul;
-                     var aug;
-                     var sep;
-                     var oct;
-                     var nov;
-                     var dec;
+                     var jan = 0;
+                     var feb = 0;
+                     var mar = 0;
+                     var apr = 0;
+                     var may = 0;
+                     var jun = 0;
+                     var jul = 0;
+                     var aug = 0;
+                     var sep = 0;
+                     var oct = 0;
+                     var nov = 0;
+                     var dec = 0;
                      // year
 
                      var year = 0;
