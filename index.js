@@ -140,8 +140,6 @@ app.get('/script.js', function(request, response) {
                      var oct;
                      var nov;
                      var dec;
-
-
                      // year
 
 
@@ -246,26 +244,26 @@ app.get('/script.js', function(request, response) {
                      result = result.replace("number21", twentyoneCount);
                      result = result.replace("number22", twentytwoCount);
 
-                     result = data.replace("week1", mon);
-                     result = data.replace("week2", tues);
-                     result = data.replace("week3", wed);
-                     result = data.replace("week4", thur);
-                     result = data.replace("week5", fri);
-                     result = data.replace("week6", sat);
-                     result = data.replace("week7", sun);
+                     result = result.replace("week1", mon);
+                     result = result.replace("week2", tues);
+                     result = result.replace("week3", wed);
+                     result = result.replace("week4", thur);
+                     result = result.replace("week5", fri);
+                     result = result.replace("week6", sat);
+                     result = result.replace("week7", sun);
 
-                     result = data.replace("month1", jan);
-                     result = data.replace("month2", feb);
-                     result = data.replace("month3", mar);
-                     result = data.replace("month4", apr);
-                     result = data.replace("month5", may);
-                     result = data.replace("month6", jun);
-                     result = data.replace("month7", jul);
-                     result = data.replace("month8", aug);
-                     result = data.replace("month9", sep);
-                     result = data.replace("month10", oct);
-                     result = data.replace("month11", nov);
-                     result = data.replace("month12", dec);
+                     result = result.replace("month1", jan);
+                     result = result.replace("month2", feb);
+                     result = result.replace("month3", mar);
+                     result = result.replace("month4", apr);
+                     result = result.replace("month5", may);
+                     result = result.replace("month6", jun);
+                     result = result.replace("month7", jul);
+                     result = result.replace("month8", aug);
+                     result = result.replace("month9", sep);
+                     result = result.replace("month10", oct);
+                     result = result.replace("month11", nov);
+                     result = result.replace("month12", dec);
 
 
 
