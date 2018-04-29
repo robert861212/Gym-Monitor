@@ -50,11 +50,22 @@ schedule.scheduleJob(rule, function(){
                   "hour": hour,
                   "number": count,
                };
-            var toInsertDay = 
+
+            if (hour >= 20)
+            {            
+               var toInsertDay = 
+               {
+                  "day": day - 1,
+                  "number": dayCount,
+               };
+            } else 
+            {
+               var toInsertDay = 
                {
                   "day": day,
                   "number": dayCount,
                };
+            }
             JSON.stringify(toInsertHr);
             JSON.stringify(toInsertDay);
             db.collection('hours', function(error, coll) {
@@ -62,6 +73,7 @@ schedule.scheduleJob(rule, function(){
                   coll.remove(previous_entry, function(err, coll){
                      db.collection('hours', function(error, coll) {
                         coll.insert(toInsertHr);
+
                            db.collection('days', function(error, collD) {
                            var previous_entry_day = { "day": day};
                            collD.remove(previous_entry_day);
