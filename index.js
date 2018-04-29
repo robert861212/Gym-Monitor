@@ -46,10 +46,10 @@ schedule.scheduleJob(rule, function(){
                   "number": count,
                };
             JSON.stringify(toInsert);
-            db.collection('day', function(error, coll) {
+            db.collection('days', function(error, coll) {
                   var previous_entry = { "day": hour};
                   coll.remove(previous_entry, function(err, coll){
-                     db.collection('day', function(error, coll) {
+                     db.collection('days', function(error, coll) {
                         coll.insert(toInsert, function(error, saved) {
                   });
                });
