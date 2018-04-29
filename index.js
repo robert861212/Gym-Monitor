@@ -182,7 +182,7 @@ app.get('/script.js', function(request, response) {
                      var sevenCount = 0;
                      var eightCount = 0;
                      var nineCount = 0;
-                     var tenCoun = 0;
+                     var tenCount = 0;
                      var elevenCount = 0;
                      var twelveCount = 0;
                      var thirteenount = 0;
