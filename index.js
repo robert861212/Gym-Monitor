@@ -60,15 +60,13 @@ schedule.scheduleJob(rule, function(){
                   var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
                      db.collection('hours', function(error, coll) {
-                        coll.insert(toInsertHr, function(error, saved) {
+                        coll.insert(toInsertHr);
                            db.collection('days', function(error, collD) {
                            var previous_entry_day = { "day": day};
-                           collD.remove(previous_entry_day, function(err, collD){
+                           collD.remove(previous_entry_day);
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertHr, function(error, saved) {
 
-                                    });
-                                 }); 
                               });
                            });    
                         });
