@@ -21,12 +21,13 @@ var count = 0;
 // hours
 var rule = new schedule.RecurrenceRule();
 //rule.minute = [0,5,10,15,20,25,30,35,40,45,50,55,59];
-rule.second = [0,5,10,15,20,25,30,35,40,45,50,55,59];//[59];
+rule.second = [59];
 schedule.scheduleJob(rule, function(){
    db.collection('hours', function(er, collection) { 
       var now = new Date();
       var hour = now.getHours();
       var minute = now.getMinutes();
+      var day = now.getDay();
       hour -= 4;
       if (hour < 0)
       {
@@ -35,25 +36,44 @@ schedule.scheduleJob(rule, function(){
       db.collection('increments', function(er, collection) {
          collection.find({}).toArray(function(err, results) {
             var count = 0;
+            var dayCount = 0;
             for (var i = 0; i < results.length; i++)
             {
                count += parseFloat(results[i].increment);
+
+               if (parseFloat(results[i].increment) == 1)
+                  dayCount++;
             }
          
-            var toInsert = 
+            var toInsertHr = 
                {
                   "hour": hour,
                   "number": count,
+               };
+            var toInsertDay = 
+               {
+                  "day": day,
+                  "number": dayCount,
                };
             JSON.stringify(toInsert);
             db.collection('hours', function(error, coll) {
                   var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
                      db.collection('hours', function(error, coll) {
-                        coll.insert(toInsert, function(error, saved) {
+                        coll.insert(toInsertHr, function(error, saved) {
+                           db.collection('days', function(error, collD) {
+                           var previous_entry_day = { "day": day};
+                           collD.remove(previous_entry_day, function(err, collD){
+                              db.collection('days', function(error, collD) {
+                                 coll.insert(toInsertHr, function(error, saved) {
+
+                                    });
+                                 }); 
+                              });
+                           });    
+                        });
+                     });
                   });
-               });
-               });
             });      
          });
       });         
