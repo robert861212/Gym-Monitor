@@ -142,7 +142,7 @@ app.get('/script.js', function(request, response) {
                      var dec;
                      // year
 
-                     var year;
+                     var year = 0;
                      for (var i = 0; i < results.length; i++)
                      {
                         if (results[i].hour == 7)
