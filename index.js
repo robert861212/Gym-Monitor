@@ -16,6 +16,10 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname + '/public'));
 
+var http = require("http");
+setInterval(function() {
+    http.get("http://tufts-gym-monitor.herokuapp.com/");
+}, 30000);
 
 var count = 0;
 // hours
