@@ -42,14 +42,14 @@ schedule.scheduleJob(rule, function(){
          
             var toInsert = 
                {
-                  "day": hour,
+                  "hour": hour,
                   "number": count,
                };
             JSON.stringify(toInsert);
-            db.collection('days', function(error, coll) {
-                  var previous_entry = { ".": hour};
+            db.collection('hours', function(error, coll) {
+                  var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
-                     db.collection('days', function(error, coll) {
+                     db.collection('hours', function(error, coll) {
                         coll.insert(toInsert, function(error, saved) {
                   });
                });
