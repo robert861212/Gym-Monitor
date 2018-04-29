@@ -114,13 +114,13 @@ function show_people() {
   data = {
     header: ["Name", "People"],
     rows: [
-    ["Mon", 50],
-    ["Tue", 50],
-    ["Wed", 50],
-    ["Thu", 50],
-    ["Fri", 50],
-    ["Sat", 50],
-    ["Sun", 50]
+    ["Mon", week1],
+    ["Tue", week2],
+    ["Wed", week3],
+    ["Thu", week4],
+    ["Fri", week5],
+    ["Sat", week6],
+    ["Sun", week7]
     ]};
 
         // create the chart
@@ -144,18 +144,18 @@ function show_people() {
   data = {
     header: ["Name", "People"],
     rows: [
-    ["Jan", 50],
-    ["Feb", 50],
-    ["Mar", 50],
-    ["Apr", 50],
-    ["May", 50],
-    ["Jun", 50],
-    ["Jul", 50],
-    ["Aug", 50],
-    ["Sep", 50],
-    ["Oct", 50],
-    ["Nov", 50],
-    ["Dec", 50],
+    ["Jan", month1],
+    ["Feb", month2],
+    ["Mar", month3],
+    ["Apr", month4],
+    ["May", month5],
+    ["Jun", month6],
+    ["Jul", month7],
+    ["Aug", month8],
+    ["Sep", month9],
+    ["Oct", month10],
+    ["Nov", month11],
+    ["Dec", month12],
     ]};
 
         // create the chart
@@ -179,7 +179,7 @@ function show_people() {
   data = {
    header: ["Name", "People"],
    rows: [
-   ["2018", 50],
+   ["2018", year],
    ]};
 
         // create the chart
