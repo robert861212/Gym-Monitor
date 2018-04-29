@@ -155,6 +155,16 @@ app.get('/', function(request, response) {
          fs.readFile("index.html", 'utf8', function (err,data) {
          var result = data.replace("toBeReplaced", count.toString());
          result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
+         if (count <= 15)
+            result = result.replace("business", "The gym is almost empty.")
+         else if (count > 15 && count <= 30)
+            result = result.replace("business", "The gym is almost half full.")
+         else if (count > 30 && count <= 45)
+            result = result.replace("business", "The gym is moderately busy.")
+         else if (count > 45 && count < 60)
+            result = result.replace("business", "The gym is pretty busy.")
+         else 
+            result = result.replace("business", "The gym is super busy.")
          response.send(result);
          });
       });
