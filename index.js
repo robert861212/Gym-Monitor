@@ -144,7 +144,7 @@ app.get('/script.js', function(request, response) {
                      var thur;
                      var fri;
                      var sat;
-                     var sevenCount;
+                     var sun;
 
                      // months
                      var jan;
