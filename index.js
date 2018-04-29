@@ -49,7 +49,7 @@ schedule.scheduleJob(rule, function(){
             var toInsertHr = 
                {
                   "hour": hour,
-                  "number": count,
+                  "number": count
                };
 
             if (hour >= 20)
@@ -57,14 +57,14 @@ schedule.scheduleJob(rule, function(){
                var toInsertDay = 
                {
                   "day": day - 1,
-                  "number": dayCount,
+                  "number": dayCount
                };
             } else 
             {
                var toInsertDay = 
                {
                   "day": day,
-                  "number": dayCount,
+                  "number": dayCount
                };
             }
 
@@ -114,7 +114,7 @@ schedule.scheduleJob(rule, function(){
                                                 var toInsert = 
                                                 {
                                                    "month": month - 1,
-                                                   "number": monthCount,
+                                                   "number": monthCount
                                                 };
 
                                                 db.collection('dates', function(error, colltodelete) {
