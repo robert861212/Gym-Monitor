@@ -179,7 +179,7 @@ function show_people() {
   data = {
    header: ["Name", "People"],
    rows: [
-   ["2018", year],
+   ["2018", year1],
    ]};
 
         // create the chart

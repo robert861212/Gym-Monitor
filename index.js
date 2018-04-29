@@ -266,7 +266,7 @@ app.get('/script.js', function(request, response) {
                      result = result.replace("month11", nov);
                      result = result.replace("month12", dec);
 
-                     result = result.replace("year", year);
+                     result = result.replace("year1", year);
 
 
 
