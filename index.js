@@ -94,10 +94,10 @@ app.get('/script.js', function(request, response) {
    // });
    db.collection('hours', function(er, collection) {
       collection.find({}).toArray(function(err, results) {
-         db.collection('days', function(er, collection) {
-            collection.find({}).toArray(function(err, resultsD) {
-               db.collection('months', function(er, collection) {
-                  collection.find({}).toArray(function(err, resultsM) {
+         db.collection('days', function(er, collectionD) {
+            collectionD.find({}).toArray(function(err, resultsD) {
+               db.collection('months', function(er, collectionM) {
+                  collectionM.find({}).toArray(function(err, resultsM) {
                      fs.readFile("script.js", 'utf8', function (err,data) {
 
                      // hr
