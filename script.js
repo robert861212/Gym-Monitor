@@ -139,7 +139,7 @@ function show_people() {
         chart.title("Number of people in gym");
 
         // setting ticks and minor ticks
-        chart.yScale().ticks().interval(50);
+        chart.yScale().ticks().interval(250);
 
         // display minor ticks
         chart.yAxis().minorTicks().enabled(true);
@@ -180,10 +180,10 @@ function show_people() {
         chart.title("Number of people in gym");
         
         // setting ticks and minor ticks
-        chart.yScale().ticks().interval(100);
+        chart.yScale().ticks().interval(1000);
 
         // display minor ticks
-        chart.yAxis().minorTicks().enabled(true);
+        // chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
@@ -210,10 +210,10 @@ function show_people() {
         chart.title("Number of people in gym");
 
         // setting ticks and minor ticks
-        chart.yScale().ticks().interval(500);
+        chart.yScale().ticks().interval(1000);
 
         // display minor ticks
-        chart.yAxis().minorTicks().enabled(true);
+        // chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
