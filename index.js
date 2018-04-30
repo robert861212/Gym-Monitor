@@ -88,7 +88,7 @@ schedule.scheduleJob(rule, function(){
 
                            db.collection('days', function(error, collD) {
                            var previous_entry_day = { "day": day};
-                           collD.remove(previous_entry_day);
+                           collD.remove(previous_entry_day, function(error, collD) {
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertDay, function(error, saved) {
 
@@ -128,8 +128,12 @@ schedule.scheduleJob(rule, function(){
                                                    });
                                              });
                                           });
-                                       }           
+                                       } 
+
+
                                     }
+
+                                 });
                               });
                            });    
                         });
