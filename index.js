@@ -80,6 +80,7 @@ schedule.scheduleJob(rule, function(){
                };
             JSON.stringify(toInsertHr);
             JSON.stringify(toInsertDay);
+            JSON.stringify(toInsertDate);
             db.collection('hours', function(error, coll) {
                   var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
