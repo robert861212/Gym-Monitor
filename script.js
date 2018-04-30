@@ -102,6 +102,12 @@ function show_people() {
         // set the chart title
         chart.title("Number of people in gym");
 
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(10);
+
+        // display minor ticks
+        chart.yAxis().minorTicks().enabled(true);
+
         // draw
         chart.container("graph");
         chart.draw();
@@ -131,6 +137,12 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(50);
+
+        // display minor ticks
+        chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
@@ -166,6 +178,12 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+        
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(100);
+
+        // display minor ticks
+        chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
@@ -190,6 +208,12 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(500);
+
+        // display minor ticks
+        chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
