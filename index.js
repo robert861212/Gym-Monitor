@@ -98,11 +98,12 @@ schedule.scheduleJob(rule, function(){
                                           collDa.insert(toInsertDate, function(error, saved) {
                                              db.collection('hours', function(error, colltodelete) {
                                                 colltodelete.remove();
+                                                   db.collection('increments', function(error, colldelete) {
+                                                   colldelete.remove();
+                                             });
                                              });
 
-                                             db.collection('increments', function(error, colldelete) {
-                                                colldelete.remove();
-                                             });
+                                             
 
                                           });
                                        }); 
