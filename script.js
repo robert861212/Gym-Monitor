@@ -93,6 +93,7 @@ function show_people() {
     ["10PM", number22],
     ]};
 
+  
         // create the chart
         chart = anychart.column();
 
@@ -101,6 +102,22 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+
+        // Calculate tick interval based off max 
+        var avg = 0;
+        for (i=0; i < data.rows.length; i++) {
+          avg += data.rows[i][1];
+        }
+        avg = avg / 16;
+        avg *= 5;
+        avg += 10;
+        Math.round(avg);
+
+        chart.yScale().ticks().interval(avg);
+
+        // display minor ticks
+        // chart.yAxis().minorTicks().enabled(true);
+        chart.yScale().minimum(0);
 
         // draw
         chart.container("graph");
@@ -131,6 +148,13 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(250);
+
+        // display minor ticks
+        chart.yAxis().minorTicks().enabled(true);
+        chart.yScale().minimum(0);
 
         // draw
         chart.container("graph");
@@ -166,6 +190,12 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+        
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(1000);
+        chart.yScale().minimum(0);
+        // display minor ticks
+        // chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
@@ -190,6 +220,12 @@ function show_people() {
 
         // set the chart title
         chart.title("Number of people in gym");
+
+        // setting ticks and minor ticks
+        chart.yScale().ticks().interval(1000);
+        chart.yScale().minimum(0);
+        // display minor ticks
+        // chart.yAxis().minorTicks().enabled(true);
 
         // draw
         chart.container("graph");
