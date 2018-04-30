@@ -87,12 +87,12 @@ schedule.scheduleJob(rule, function(){
                         coll.insert(toInsertHr);
 
                            db.collection('days', function(error, collD) {
-                           var previous_entry_day = { "day": day};
-                           collD.remove(previous_entry_day, function(error, collD) {
+                           var previous_entry_day = { "day": day.toString()};
+                           collD.remove(previous_entry_day, function(error, col) {
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertDay, function(error, saved) {
 
-                                    if (hour == 11)
+                                    if (hour == 0)
                                     {
                                        db.collection('dates', function(error, collDa) {
                                           collDa.insert(toInsertDate, function(error, saved) {
@@ -108,7 +108,7 @@ schedule.scheduleJob(rule, function(){
                                           });
                                        }); 
                                     
-                                       if (date == 1 && hour == 0)
+                                       if (date == 1)
                                        {
                                           db.collection('months', function(er, collection) {
                                              collection.find({}).toArray(function(err, results) {
