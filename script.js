@@ -19,7 +19,7 @@ $( document ).ready(function() {
 });
 
 anychart.onDocumentReady(function() {
-   anychart.theme(anychart.themes.lightProvence);
+   anychart.theme(anychart.themes.monoChrome);
    var data;
    var chart = anychart.column();;
    show_current();
