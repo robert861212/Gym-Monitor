@@ -85,7 +85,7 @@ schedule.scheduleJob(rule, function(){
                   var previous_entry = { "hour": hour};
                   coll.remove(previous_entry, function(err, coll){
                      db.collection('hours', function(error, coll) {
-                        coll.insert(toInsertHr);
+                        coll.insert(toInsertHr, function(error, co) {
 
                            db.collection('days', function(error, collD) {
                            var previous_entry_day = { "day": day};
@@ -109,14 +109,37 @@ schedule.scheduleJob(rule, function(){
                                           });
                                        }); 
                                     
+
                                        if (date == 1)
+                                       {
+                                          db.collection('dates', function(er, collection) {
+                                             collection.find({}).toArray(function(err, results) {
+                                                var monthCount = 0;
+                                                for (var i = 0; i < results.length; i++)
+                                                {
+                                                   monthCount += parseFloat(results[i].increment);
+                                                }
+                                                var toInsert = 
+                                                {
+                                                   "month": month,
+                                                   "number": monthCount
+                                                };
+
+                                                   db.collection('dates', function(error, colltodelete) {
+                                                      colltodelete.remove();
+                                                   });
+                                             });
+                                          });
+                                       } 
+
+                                       if (month == 0 && date == 1)
                                        {
                                           db.collection('months', function(er, collection) {
                                              collection.find({}).toArray(function(err, results) {
                                                 var yearCount = 0;
                                                 for (var i = 0; i < results.length; i++)
                                                 {
-                                                   count += parseFloat(results[i].increment);
+                                                   yearCount += parseFloat(results[i].increment);
                                                 }
                                                 var toInsert = 
                                                 {
@@ -132,6 +155,7 @@ schedule.scheduleJob(rule, function(){
                                        } 
                                     }
 
+                                    });
                                  });
                               });
                            });    
