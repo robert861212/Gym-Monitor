@@ -93,9 +93,7 @@ function show_people() {
     ["10PM", number22],
     ]};
 
-    
-
-    console.log("avg: " + avg);
+  
         // create the chart
         chart = anychart.column();
 
@@ -113,6 +111,8 @@ function show_people() {
         avg = avg / 16;
         avg *= 5;
         avg += 10;
+        Math.round(avg);
+
         chart.yScale().ticks().interval(avg);
 
         // display minor ticks
