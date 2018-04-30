@@ -161,27 +161,27 @@ app.get('/', function(request, response) {
          if (count <= 15)
          {
             result = result.replace("business", "The gym is almost empty.");
-            result = result.replace("percent", "<figure class="chart" data-percent="25">");
+            result = result.replace("percent", "<figure class=chart data-percent=25>");
          }
          else if (count > 15 && count <= 30)
          {
             result = result.replace("business", "The gym is almost half full.");
-            result = result.replace("percent", "<figure class="chart" data-percent="50">");
+            result = result.replace("percent", "<figure class=chart data-percent=50>");
          }
          else if (count > 30 && count <= 45)
          {
             result = result.replace("business", "The gym is moderately busy.");
-            result = result.replace("percent", "<figure class="chart" data-percent="50">");
+            result = result.replace("percent", "<figure class=chart data-percent=50>");
          }
          else if (count > 45 && count < 60)
          {
             result = result.replace("business", "The gym is pretty busy.");
-            result = result.replace("percent", "<figure class="chart" data-percent="75">");
+            result = result.replace("percent", "<figure class=chart data-percent=75>");
          }
          else 
          {
             result = result.replace("business", "The gym is super busy.");
-            result = result.replace("percent", "<figure class="chart" data-percent="100">");
+            result = result.replace("percent", "<figure class=chart data-percent=100>");
          }
          response.send(result);
          });
