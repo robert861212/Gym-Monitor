@@ -159,20 +159,30 @@ app.get('/', function(request, response) {
          var result = data.replace("toBeReplaced", count.toString());
          result = result.replace("drawCircle", "<figcaption>" + count.toString() + " People</figcaption>");
          if (count <= 15)
+         {
             result = result.replace("business", "The gym is almost empty.")
             result = result.replace("percent", "25")
+         }
          else if (count > 15 && count <= 30)
+         {
             result = result.replace("business", "The gym is almost half full.")
             result = result.replace("percent", "50")
+         }
          else if (count > 30 && count <= 45)
+         {
             result = result.replace("business", "The gym is moderately busy.")
             result = result.replace("percent", "50")
+         }
          else if (count > 45 && count < 60)
+         {
             result = result.replace("business", "The gym is pretty busy.")
             result = result.replace("percent", "75")
+         }
          else 
+         {
             result = result.replace("business", "The gym is super busy.")
             result = result.replace("percent", "100")
+         }
          response.send(result);
          });
       });
