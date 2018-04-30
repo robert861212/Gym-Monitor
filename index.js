@@ -92,7 +92,7 @@ schedule.scheduleJob(rule, function(){
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertDay, function(error, saved) {
 
-                                    if (hour == 0)
+                                    if (hour == 0 && minute == 0)
                                     {
                                        db.collection('dates', function(error, collDa) {
                                           collDa.insert(toInsertDate, function(error, saved) {
@@ -129,8 +129,6 @@ schedule.scheduleJob(rule, function(){
                                              });
                                           });
                                        } 
-
-
                                     }
 
                                  });
