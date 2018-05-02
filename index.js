@@ -87,9 +87,9 @@ schedule.scheduleJob(rule, function(){
                      db.collection('hours', function(error, coll) {
                         coll.insert(toInsertHr, function(error, co) {
 
-                           db.collection('days', function(error, collD) {
+                           db.collection('days', function(error, collDa) {
                            var previous_entry_day = {"day": day};
-                           collD.remove(previous_entry_day, function(error, col) {
+                           collDa.remove(previous_entry_day, function(error, col) {
                               db.collection('days', function(error, collD) {
                                  collD.insert(toInsertDay, function(error, saved) {
 
