@@ -91,8 +91,8 @@ schedule.scheduleJob(rule, function(){
                            var previous = {"day": day};
                            JSON.stringify(previous);
                            collDa.remove(previous);
-                              db.collection('days', function(error, collD) {
-                                 collD.insert(toInsertDay, function(error, saved) {
+                              // db.collection('days', function(error, collD) {
+                              //    collD.insert(toInsertDay, function(error, saved) {
 
                                     if (hour == 0 && minute == 0)
                                     {
@@ -154,8 +154,8 @@ schedule.scheduleJob(rule, function(){
                                     }
 
                                     });
-                                 });
-                              });
+                              //    });
+                              // });
                                
                         });
                      });
